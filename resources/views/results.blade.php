@@ -5,7 +5,7 @@
     <h1>Results for {{ $company[1] }} - {{ $company[0] }}</h1>
     <p>Date range: {{ $startDate }} to {{ $endDate }}</p>
     
-    @if($data)
+    @if($data['prices'])
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#section1">Row Data</a></li>
         <li><a data-toggle="tab" href="#section2">Chart</a></li>

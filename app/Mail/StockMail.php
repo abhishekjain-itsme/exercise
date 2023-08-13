@@ -34,6 +34,6 @@ class StockMail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->companyName[0])->view('emails.stock_info');
+        return $this->subject($this->companyName)->view('emails.stock_info');
     }
 }
