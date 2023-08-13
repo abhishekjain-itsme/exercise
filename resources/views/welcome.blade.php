@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label for="start_date" class="col-md-3 control-label">Start Date</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control datepicker" placeholder="Enter Start Date" id="start_date" name="start_date">
+                                <input type="text" class="form-control datepicker" placeholder="Enter Start Date" id="start_date" name="start_date" autocomplete="off">
                                 @if ($errors->has('start_date'))
                                     <span class="text-danger">{{ $errors->first('start_date') }}</span>
                                 @endif
@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <label for="end_date" class="col-md-3 control-label">End Date</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control datepicker" placeholder="Enter End Date" id="end_date" name="end_date">
+                                <input type="text" class="form-control datepicker" placeholder="Enter End Date" id="end_date" name="end_date" autocomplete="off">
                                 @if ($errors->has('end_date'))
                                     <span class="text-danger">{{ $errors->first('end_date') }}</span>
                                 @endif
@@ -75,6 +75,28 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-    $('.datepicker').datepicker(); // Initialize datepicker
+$(document).ready(function () {
+    var startDate = $("#start_date").datepicker({
+        maxDate: 0, // Disables future dates
+        changeYear: true, // Allows changing the year directly
+        yearRange: "-100:+0", // Allows selecting from 100 years ago to current year
+        // dateFormat: "yy-mm-dd", // Format of the selected date
+        onSelect: function (selectedDate) {
+            // Set minDate for end date to start date
+            $("#end_date").datepicker("option", "minDate", selectedDate);
+        }
+    });
+
+    $("#end_date").datepicker({
+        maxDate: 0, // Disables future dates
+        changeYear: true, // Allows changing the year directly
+        yearRange: "-100:+0", // Allows selecting from 100 years ago to current year
+        // dateFormat: "yy-mm-dd", // Format of the selected date
+        onSelect: function (selectedDate) {
+            // Set maxDate for start date to end date
+            startDate.datepicker("option", "maxDate", selectedDate);
+        }
+    });
+});
 </script>
 @endsection

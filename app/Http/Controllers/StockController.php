@@ -24,8 +24,8 @@ class StockController extends Controller
     {
         $validatedData = $request->validate([
             'company' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date',
+            'start_date' => 'required|date|before_or_equal:end_date|before_or_equal:today',
+            'end_date' => 'required|date|after_or_equal:start_date|before_or_equal:today',
             'email' => 'required|email',
         ]);
 
@@ -48,7 +48,7 @@ class StockController extends Controller
 
         $data = json_decode($response->getBody(), true);
         
-        Mail::to($request->email)->send(new StockMail($request->company, $startDate, $endDate));
+        // Mail::to($request->email)->send(new StockMail($request->company, $startDate, $endDate));
 
         return view('results', compact('company', 'startDate', 'endDate', 'data'));
     }
