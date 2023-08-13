@@ -15,7 +15,7 @@ class StockController extends Controller
         $response = $client->get('https://pkgstore.datahub.io/core/nasdaq-listings/nasdaq-listed_json/data/a5bc7580d6176d60ac0b2142ca8d7df6/nasdaq-listed_json.json');
 
         $companies = json_decode($response->getBody(), true);
-        // $companies = [['Company Name' => 'dsdfsdf', 'Symbol' => 'sdasd']];
+        
         return view('welcome', compact('companies'));
     }
 
@@ -47,7 +47,7 @@ class StockController extends Controller
 
         $data = json_decode($response->getBody(), true);
         
-        // Mail::to($request->email)->send(new StockMail($request->company, $startDate, $endDate));
+        Mail::to($request->email)->send(new StockMail($request->company, $startDate, $endDate));
 
         return view('results', compact('company', 'startDate', 'endDate', 'data'));
     }
