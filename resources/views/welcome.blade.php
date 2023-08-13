@@ -20,29 +20,42 @@
                             <label for="company" class="col-md-3 control-label">Company</label>
                             <div class="col-md-9">
                                 <select name="company" id="company" class="form-control">
+                                    <option value="">Select Company</option>
                                     @foreach ($companies as $company)
                                     <option value="{{ $company['Symbol'] }} - {{ $company['Company Name'] }}">{{ $company['Company Name'] }}</option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('company'))
+                                    <span class="text-danger">{{ $errors->first('company') }}</span>
+                                @endif
                             </div>
                         </div>
                             
                         <div class="form-group">
-                            <label for="firstname" class="col-md-3 control-label">Start Date</label>
+                            <label for="start_date" class="col-md-3 control-label">Start Date</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control datepicker" placeholder="Enter Start Date" id="start_date" name="start_date">
+                                @if ($errors->has('start_date'))
+                                    <span class="text-danger">{{ $errors->first('start_date') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="lastname" class="col-md-3 control-label">End Date</label>
+                            <label for="end_date" class="col-md-3 control-label">End Date</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control datepicker" placeholder="Enter End Date" id="end_date" name="end_date">
+                                @if ($errors->has('end_date'))
+                                    <span class="text-danger">{{ $errors->first('end_date') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="password" class="col-md-3 control-label">Email</label>
+                            <label for="email" class="col-md-3 control-label">Email</label>
                             <div class="col-md-9">
-                            <input type="email" class="form-control" placeholder="Enter Your Email" id="email" name="email">
+                                <input type="email" class="form-control" placeholder="Enter Your Email" id="email" name="email">
+                                @if ($errors->has('email'))
+                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">

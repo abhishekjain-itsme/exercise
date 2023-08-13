@@ -4,7 +4,48 @@
 <div class="container">
     <h1>Results for {{ $company[1] }} - {{ $company[0] }}</h1>
     <p>Date range: {{ $startDate }} to {{ $endDate }}</p>
-    <canvas id="stockChart" width="400" height="200"></canvas>
+    
+    @if($data)
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#section1">Row Data</a></li>
+        <li><a data-toggle="tab" href="#section2">Chart</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="section1" class="tab-pane fade in active">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Open</th>
+                        <th>High</th>
+                        <th>Low</th>
+                        <th>Close</th>
+                        <th>Volume</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($data['prices'] as $row)
+                        <tr>
+                            <td>{{ Carbon\Carbon::parse($row['date'])->format('m/d/Y') }}</td>
+                            <td>{{ $row['open'] }}</td>
+                            <td>{{ $row['high'] }}</td>
+                            <td>{{ $row['low'] }}</td>
+                            <td>{{ $row['close'] }}</td>
+                            <td>{{ $row['volume'] }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div id="section2" class="tab-pane fade">
+            <canvas id="stockChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+    
+    
+    @else
+    <p>Record Not Found</p>
+    @endif
 </div>
 @endsection
 
