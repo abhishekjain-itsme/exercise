@@ -27,12 +27,13 @@
                     @foreach ($data['prices'] as $row)
                         <tr>
                             <td>{{ Carbon\Carbon::parse($row['date'])->format('m/d/Y') }}</td>
-                            <td>{{ $row['open'] }}</td>
-                            <td>{{ $row['high'] }}</td>
-                            <td>{{ $row['low'] }}</td>
-                            <td>{{ $row['close'] }}</td>
-                            <td>{{ $row['volume'] }}</td>
+                            <td>{{ @$row['open'] }}</td> 
+                            <td>{{ @$row['high'] }}</td>
+                            <td>{{ @$row['low'] }}</td>
+                            <td>{{ @$row['close'] }}</td>
+                            <td>{{ @$row['volume'] }}</td>
                         </tr>
+                        <!-- use @ before render data because in the API response at some places data is not coming, only getting dates -->
                     @endforeach
                 </tbody>
             </table>
@@ -41,8 +42,6 @@
             <canvas id="stockChart" width="400" height="200"></canvas>
         </div>
     </div>
-    
-    
     @else
     <p>Record Not Found</p>
     @endif
