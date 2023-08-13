@@ -48,7 +48,7 @@ class StockController extends Controller
 
         $data = json_decode($response->getBody(), true);
         
-        // Mail::to($request->email)->send(new StockMail($request->company, $startDate, $endDate));
+        Mail::to($request->email)->send(new StockMail($request->company, $startDate, $endDate));
 
         return view('results', compact('company', 'startDate', 'endDate', 'data'));
     }

@@ -26,7 +26,7 @@
                 <tbody>
                     @foreach ($data['prices'] as $row)
                         <tr>
-                            <td>{{ Carbon\Carbon::parse($row['date'])->format('m/d/Y') }}</td>
+                            <td>{{ Carbon\Carbon::parse($row['date'])->format('Y-m-d') }}</td>
                             <td>{{ @$row['open'] }}</td> 
                             <td>{{ @$row['high'] }}</td>
                             <td>{{ @$row['low'] }}</td>

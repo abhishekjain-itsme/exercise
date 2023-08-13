@@ -80,7 +80,7 @@ $(document).ready(function () {
         maxDate: 0, // Disables future dates
         changeYear: true, // Allows changing the year directly
         yearRange: "-100:+0", // Allows selecting from 100 years ago to current year
-        // dateFormat: "yy-mm-dd", // Format of the selected date
+        dateFormat: "yy-mm-dd", // Format of the selected date
         onSelect: function (selectedDate) {
             // Set minDate for end date to start date
             $("#end_date").datepicker("option", "minDate", selectedDate);
@@ -91,7 +91,7 @@ $(document).ready(function () {
         maxDate: 0, // Disables future dates
         changeYear: true, // Allows changing the year directly
         yearRange: "-100:+0", // Allows selecting from 100 years ago to current year
-        // dateFormat: "yy-mm-dd", // Format of the selected date
+        dateFormat: "yy-mm-dd", // Format of the selected date
         onSelect: function (selectedDate) {
             // Set maxDate for start date to end date
             startDate.datepicker("option", "maxDate", selectedDate);
