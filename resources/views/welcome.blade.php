@@ -22,7 +22,7 @@
                                 <select name="company" id="company" class="form-control">
                                     <option value="">Select Company</option>
                                     @foreach ($companies as $company)
-                                    <option value="{{ $company['Symbol'] }} - {{ $company['Company Name'] }}">{{ $company['Company Name'] }}</option>
+                                    <option value="{{ $company['Symbol'] }} - {{ $company['Company Name'] }}">{{ $company['Symbol'] }} - {{ $company['Company Name'] }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('company'))
